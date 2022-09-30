@@ -1,0 +1,95 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+    </data>
+
+    <RelativeLayout
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        tools:context=".act.ui.Fragment.ReviewFragment">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginVertical="10dp"
+            android:background="@color/white"
+            android:orientation="vertical">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginHorizontal="16dp"
+                android:layout_marginTop="25dp"
+                android:fontFamily="@font/raleway_semibold"
+                android:text="@string/reviews"
+                android:textColor="@color/black"
+                android:textSize="18sp" />
+
+            <TextView
+                android:id="@+id/tv_yourreview"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginHorizontal="16dp"
+                android:layout_marginTop="10dp"
+                android:layout_marginBottom="5dp"
+                android:fontFamily="@font/poppins_regular"
+                android:text="@string/write_your_review"
+                android:textColor="@color/purple_200"
+                android:textSize="14sp" />
+
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/rv_Reviews"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:nestedScrollingEnabled="false" />
+
+            <!--        <TextView-->
+            <!--            android:id="@+id/tv_ShowMore"-->
+            <!--            android:layout_width="match_parent"-->
+            <!--            android:layout_height="wrap_content"-->
+            <!--            android:layout_marginHorizontal="16dp"-->
+            <!--            android:layout_marginBottom="26dp"-->
+            <!--            android:fontFamily="@font/regular"-->
+            <!--            android:gravity="right"-->
+            <!--            android:text="Show More"-->
+            <!--            android:textColor="@color/red"-->
+            <!--            android:textSize="16dp" />-->
+
+            <!--        <LinearLayout-->
+            <!--            android:id="@+id/tv_NoProductFound"-->
+            <!--            android:layout_width="match_parent"-->
+            <!--            android:layout_height="match_parent"-->
+            <!--            android:layout_weight="1"-->
+            <!--            android:gravity="center"-->
+            <!--            android:orientation="vertical"-->
+            <!--            android:visibility="gone">-->
+
+            <!--            <TextView-->
+            <!--                android:layout_width="match_parent"-->
+            <!--                android:layout_height="200dp"-->
+            <!--                android:layout_centerInParent="true"-->
+            <!--                android:layout_gravity="center"-->
+            <!--                android:layout_margin="16dp"-->
+            <!--                android:fontFamily="@font/regular"-->
+            <!--                android:gravity="center"-->
+            <!--                android:text="No review found"-->
+            <!--                android:textColor="@color/red"-->
+            <!--                android:textSize="20dp" />-->
+
+            <!--        </LinearLayout>-->
+
+        </LinearLayout>
+        <include
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            layout="@layout/loader"
+            android:id="@+id/loader_layout"/>
+
+
+    </RelativeLayout>
+</layout>

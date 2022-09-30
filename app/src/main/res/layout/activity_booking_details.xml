@@ -1,0 +1,346 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    >
+
+    <RelativeLayout
+        android:background="@drawable/gradient"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        tools:context=".activity.LoginActivity"
+        >
+
+        <LinearLayout
+             android:gravity="center"
+            android:orientation="horizontal"
+            android:id="@+id/RR_toolbar"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/_50sdp">
+
+            <ImageView
+                android:layout_marginLeft="@dimen/_7sdp"
+                android:padding="@dimen/_5sdp"
+                android:id="@+id/iv_Back"
+                 android:src="@drawable/backnew"
+                android:layout_width="@dimen/_25sdp"
+                android:layout_height="@dimen/_25sdp">
+
+            </ImageView>
+
+
+            <TextView
+                android:layout_marginRight="32dp"
+                android:gravity="center"
+                 android:fontFamily="@font/poppins_regular"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/booking_details"
+                android:textColor="@color/dark"
+                android:textSize="@dimen/_16sdp"
+                android:textStyle="bold" />
+
+
+        </LinearLayout>
+
+        <View
+            android:id="@+id/view"
+            android:background="@color/natural_gray"
+            android:layout_below="@+id/RR_toolbar"
+            android:layout_width="match_parent"
+            android:layout_height="1sp"
+            >
+
+        </View>
+
+        <androidx.core.widget.NestedScrollView
+            android:layout_below="@+id/view"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            >
+
+            <LinearLayout
+                android:orientation="vertical"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                >
+
+                <RelativeLayout
+                    android:layout_marginTop="@dimen/_12sdp"
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/_100sdp">
+
+
+                    <ImageView
+                        android:id="@+id/img"
+                        android:scaleType="centerCrop"
+                        android:src="@drawable/hotal1"
+                        android:layout_margin="@dimen/_10sdp"
+                        android:layout_width="@dimen/_100sdp"
+                        android:layout_height="match_parent">
+
+                    </ImageView>
+
+                    <LinearLayout
+                        android:layout_marginLeft="@dimen/_5sdp"
+                        android:orientation="vertical"
+                        android:layout_marginTop="@dimen/_5sdp"
+                        android:layout_toRightOf="@+id/img"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content">
+
+
+                        <TextView
+                            android:id="@+id/tv_Shopname"
+                            android:fontFamily="@font/poppins_regular"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="Men's Cuts"
+                            android:textColor="@color/dark"
+                            android:textSize="@dimen/_16sdp"
+                            android:textStyle="bold" />
+
+
+                        <TextView
+                            android:fontFamily="@font/poppins_regular"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="@string/appointment_time"
+                            android:textColor="#52A55E"
+                            android:textSize="@dimen/_16sdp"
+                            android:textStyle="bold" />
+
+                        <TextView
+                            android:id="@+id/tv_AppointmentTime"
+                            android:fontFamily="@font/poppins_regular"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="10 Jun 21 09:30 Am"
+                            android:textColor="@color/natural_gray"
+                            android:textSize="@dimen/_16sdp"
+                            android:textStyle="bold" />
+
+                    </LinearLayout>
+
+
+                </RelativeLayout>
+
+                <TextView
+                    android:fontFamily="@font/poppins_regular"
+                    android:layout_marginTop="@dimen/_10sdp"
+                    android:layout_marginRight="@dimen/_10sdp"
+                    android:layout_marginLeft="@dimen/_10sdp"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/services"
+                    android:textColor="@color/dark"
+                    android:textSize="@dimen/_16sdp"
+                    android:textStyle="bold" />
+
+                <RelativeLayout
+                    android:elevation="@dimen/_7sdp"
+                    android:background="@drawable/bg_rounded10"
+                    android:layout_marginTop="@dimen/_10sdp"
+                    android:layout_marginRight="@dimen/_10sdp"
+                    android:layout_marginLeft="@dimen/_10sdp"
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/_45sdp"
+                    >
+
+                    <TextView
+                        android:id="@+id/tv_Service_Name"
+                        android:layout_marginLeft="@dimen/_15sdp"
+                        android:layout_centerVertical="true"
+                        android:textSize="@dimen/_12sdp"
+                        android:text="@string/wash"
+                        android:textStyle="bold"
+                        android:layout_weight="1"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content">
+
+                    </TextView>
+
+                    <TextView
+                        android:id="@+id/tv_ServicePrice"
+                        android:layout_marginRight="@dimen/_10sdp"
+                        android:layout_alignParentRight="true"
+                        android:layout_centerVertical="true"
+                        android:textSize="@dimen/_12sdp"
+                        android:text="+$9.00"
+                        android:textStyle="bold"
+                        android:layout_weight="1"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content">
+
+                    </TextView>
+
+
+                </RelativeLayout>
+
+
+
+                <TextView
+                    android:fontFamily="@font/poppins_regular"
+                    android:layout_marginTop="@dimen/_10sdp"
+                    android:layout_marginRight="@dimen/_10sdp"
+                    android:layout_marginLeft="@dimen/_10sdp"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/charges"
+                    android:textColor="@color/dark"
+                    android:textSize="@dimen/_16sdp"
+                    android:textStyle="bold" />
+
+                <RelativeLayout
+                    android:elevation="@dimen/_7sdp"
+                    android:layout_marginBottom="@dimen/_10sdp"
+                    android:layout_marginTop="@dimen/_10sdp"
+                    android:layout_marginRight="@dimen/_15sdp"
+                    android:layout_marginLeft="@dimen/_15sdp"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    >
+
+
+                    <TextView
+                        android:layout_centerVertical="true"
+                        android:textSize="@dimen/_16sdp"
+                        android:text="@string/services_cost"
+                        android:textStyle="bold"
+                        android:layout_weight="1"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content">
+
+                    </TextView>
+
+                    <TextView
+                        android:id="@+id/tv_ServiceCost"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentRight="true"
+                        android:layout_centerVertical="true"
+                        android:layout_weight="1"
+                        android:text="+$9.00"
+                        android:textSize="@dimen/_16sdp"
+                        android:textStyle="bold">
+
+                    </TextView>
+
+                </RelativeLayout>
+
+                <RelativeLayout
+                    android:elevation="@dimen/_7sdp"
+                    android:layout_marginBottom="@dimen/_10sdp"
+                    android:layout_marginRight="@dimen/_15sdp"
+                    android:layout_marginLeft="@dimen/_15sdp"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    >
+
+
+                    <TextView
+                        android:layout_centerVertical="true"
+                        android:textSize="@dimen/_16sdp"
+                        android:text="@string/tax_10"
+                        android:textStyle="bold"
+                        android:layout_weight="1"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content">
+
+                    </TextView>
+
+                    <TextView
+                        android:id="@+id/tv_Tax"
+                        android:layout_alignParentRight="true"
+                        android:layout_centerVertical="true"
+                        android:textSize="@dimen/_16sdp"
+                        android:text="+$9.00"
+                        android:textStyle="bold"
+                        android:layout_weight="1"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content">
+
+                    </TextView>
+
+                </RelativeLayout>
+
+                <RelativeLayout
+                    android:elevation="@dimen/_7sdp"
+                    android:layout_marginBottom="@dimen/_10sdp"
+                    android:layout_marginRight="@dimen/_15sdp"
+                    android:layout_marginLeft="@dimen/_15sdp"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    >
+
+
+                    <TextView
+                        android:fontFamily="@font/poppins_regular"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/subtotal"
+                        android:textColor="@color/dark"
+                        android:textSize="@dimen/_16sdp"
+                        android:textStyle="bold" />
+
+
+                    <TextView
+                        android:id="@+id/tv_Total"
+                        android:layout_alignParentRight="true"
+                        android:layout_centerVertical="true"
+                        android:textSize="@dimen/_16sdp"
+                        android:text="+$9.00"
+                        android:textStyle="bold"
+                        android:layout_weight="1"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content">
+
+                    </TextView>
+
+                </RelativeLayout>
+
+            </LinearLayout>
+
+        </androidx.core.widget.NestedScrollView>
+
+
+
+        <RelativeLayout
+            android:id="@+id/RR_book"
+            android:layout_marginBottom="@dimen/_10sdp"
+            android:layout_alignParentBottom="true"
+            android:background="@drawable/bg_blue_border"
+            android:layout_marginTop="@dimen/_10sdp"
+            android:layout_marginRight="@dimen/_10sdp"
+            android:layout_marginLeft="@dimen/_10sdp"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/_45sdp"
+            >
+
+
+
+            <TextView
+                android:layout_centerHorizontal="true"
+                android:layout_centerVertical="true"
+                android:textSize="@dimen/_14sdp"
+                android:text="@string/book"
+                android:textStyle="bold"
+                android:textColor="@color/white"
+                android:layout_weight="1"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content">
+
+            </TextView>
+
+        </RelativeLayout>
+
+        <include
+            android:id="@+id/loader_layout"
+            layout="@layout/loader"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent" />
+
+
+    </RelativeLayout>
+
+</layout>

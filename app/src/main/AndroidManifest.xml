@@ -1,0 +1,102 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    package="com.my.sadebuser">
+    <!--
+         The ACCESS_COARSE/FINE_LOCATION permissions are not required to use
+         Google Maps Android API v2, but you must specify either coarse or fine
+         location permissions for the "MyLocation" functionality.
+    -->
+    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+    <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.CAMERA" />
+
+    <application
+        android:name=".utils.BaseClass"
+        android:allowBackup="true"
+        android:icon="@mipmap/ic_launcher"
+        android:label="@string/app_name"
+        android:roundIcon="@mipmap/ic_launcher_round"
+        android:supportsRtl="true"
+        android:usesCleartextTraffic="true"
+        android:theme="@style/Theme.SadebUser">
+        <activity android:name=".act.ui.activity.FullScreenActivity"></activity>
+        <activity
+            android:name=".act.ui.activity.CategorywiseAllServiceListActivity"
+            android:exported="true" />
+        <activity
+            android:name=".act.ui.activity.OtpVerificationActivity"
+            android:exported="true" />
+        <activity
+            android:name=".act.ui.activity.AllCategoryActivity"
+            android:exported="true" />
+        <activity
+            android:name=".act.ui.activity.ProfiileChangeActivity"
+            android:exported="true" />
+        <activity
+            android:name=".act.ui.activity.SearchActivity"
+            android:exported="true" />
+        <activity android:name=".act.ui.activity.PaymentSuccessActivity" />
+        <activity android:name=".act.ui.activity.AddCardActivity" />
+        <activity android:name=".act.ui.activity.ChooseCardActivity" />
+        <!--
+             The API key for Google Maps-based APIs is defined as a string resource.
+             (See the file "res/values/google_maps_api.xml").
+             Note that the API key is linked to the encryption key used to sign the APK.
+             You need a different API key for each encryption key, including the release key that is used to
+             sign the APK for publishing.
+             You can define the keys for the debug and release targets in src/debug/ and src/release/.
+        -->
+        <meta-data
+            android:name="com.google.android.geo.API_KEY"
+            android:value="@string/google_maps_key" />
+
+        <activity
+            android:name=".act.ui.activity.GoogleMapsActivity"
+            android:label="@string/title_activity_google_maps" />
+        <activity android:name=".act.ui.activity.NearMeAllListActivity" />
+        <activity android:name=".act.ui.activity.SplashActivity">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+        <activity android:name=".act.ui.activity.WaitingActivity" />
+        <activity android:name=".act.ui.activity.ForogotPassword" />
+        <activity android:name=".act.ui.activity.ChooseLoginActivity" />
+        <activity android:name=".act.ui.activity.ChooseLanguageActivity" />
+        <activity android:name=".act.ui.activity.Login" />
+        <activity android:name=".act.ui.activity.ProviderAllUserActivity" />
+        <activity android:name=".act.ui.activity.Register" />
+        <activity android:name=".act.ui.activity.MainActivity" />
+        <activity android:name=".act.ui.activity.UpdateEmail" />
+        <activity android:name=".act.ui.activity.UpdateGender" />
+        <activity android:name=".act.ui.activity.UpdateName" />
+        <activity android:name=".act.ui.activity.UpdatePassword" />
+        <activity android:name=".act.ui.activity.UpdatePhoneNumber" />
+        <activity android:name=".act.ui.activity.ProfileActivity" />
+        <activity android:name=".act.ui.activity.InviteFriends" />
+        <activity android:name=".act.ui.activity.ShopDetailsActivity" />
+        <activity android:name=".act.ui.activity.ShopTimeAvailavility" />
+        <activity android:name=".act.ui.activity.PaymentOption" />
+        <activity android:name=".act.ui.activity.BookingDetails" />
+
+        <meta-data
+            android:name="com.google.android.geo.API_KEY"
+            android:value="@string/google_maps_key" />
+
+        <receiver android:name=".receiver.NotifyUserReceiver" />
+
+        <service
+            android:name=".MyFirebaseMessagingService"
+            android:exported="false">
+            <intent-filter>
+                <action android:name="com.google.firebase.MESSAGING_EVENT" />
+            </intent-filter>
+        </service>
+    </application>
+
+</manifest>

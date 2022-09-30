@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+
+
+    <LinearLayout
+        android:elevation="@dimen/_7sdp"
+        android:background="@drawable/bg_rounded10"
+        android:layout_margin="@dimen/_8sdp"
+        android:gravity="center"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/_45sdp"
+        >
+
+        <CheckBox
+            android:layout_marginLeft="@dimen/_10sdp"
+            android:buttonTint="#0008ff"
+            android:id="@+id/check"
+            android:gravity="center"
+            android:layout_centerVertical="true"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            >
+
+        </CheckBox>
+        <androidx.cardview.widget.CardView
+            android:layout_width="@dimen/_40sdp"
+            android:layout_height="@dimen/_40sdp"
+            app:cardBackgroundColor="@color/white"
+            app:cardCornerRadius="@dimen/_20sdp">
+
+        <ImageView
+            android:id="@+id/image"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:scaleType="centerCrop"
+            android:src="@drawable/ic_baseline_category_24"/>
+        </androidx.cardview.widget.CardView>
+
+        <TextView
+            android:layout_toRightOf="@+id/check"
+            android:layout_centerVertical="true"
+            android:textSize="@dimen/_14sdp"
+            android:text="Wash"
+            android:id="@+id/tv_Service_Name"
+            android:textStyle="bold"
+            android:layout_marginStart="@dimen/_5sdp"
+            android:layout_weight="1"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+        </TextView>
+
+        <TextView
+            android:id="@+id/service_price"
+            android:layout_marginRight="@dimen/_10sdp"
+            android:layout_alignParentRight="true"
+            android:layout_centerVertical="true"
+            android:textSize="@dimen/_14sdp"
+            android:text="+$9.00"
+            android:textStyle="bold"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content">
+
+        </TextView>
+
+
+    </LinearLayout>
+
+</LinearLayout>

@@ -1,0 +1,170 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    >
+
+    <LinearLayout
+        android:background="@drawable/gradient"
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        tools:context=".activity.LoginActivity"
+        >
+
+        <ScrollView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+             android:fillViewport="true">
+            <LinearLayout
+                android:orientation="vertical"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                >
+
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/_180sdp">
+
+                    <ImageView
+                        android:id="@+id/iv_service"
+                        android:layout_width="match_parent"
+                        android:layout_height="@dimen/_180sdp"
+                        android:scaleType="centerCrop"
+                        android:src="@drawable/place_holder">
+
+                    </ImageView>
+
+                    <RelativeLayout
+                        android:layout_margin="@dimen/_10sdp"
+                        android:id="@+id/rl_Back"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:background="@drawable/bg_solid_white_search"
+                        android:gravity="center">
+
+                        <ImageView
+                            android:id="@+id/iv_Back"
+                            android:layout_width="36dp"
+                            android:layout_height="36sp"
+                            android:padding="10dp"
+                            android:src="@drawable/ic_shape"
+                            app:tint="@color/blue" />
+
+                    </RelativeLayout>
+
+                </RelativeLayout>
+
+                 <LinearLayout
+                     android:layout_marginTop="@dimen/_10sdp"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="@color/white"
+                    android:orientation="vertical"
+                    android:paddingBottom="16dp">
+
+
+                    <it.mike5v.viewmoretextview.ViewMoreTextView
+                        android:id="@+id/tv_Detail"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginHorizontal="16dp"
+                        android:textStyle="bold"
+                        android:textColor="@color/blue"
+                        android:textSize="16dp"
+                        app:duration="500"
+                        app:ellipsizeText="Show More"
+                        app:ellipsizeTextColor="@color/blue"
+                        app:isExpanded="false"
+                        app:visibleLines="3" />
+
+                    <TextView
+                        android:id="@+id/tvDescription"
+                        android:text="Taper and Fade haircuts for men is invaluable when you’re
+visiting the barbershop and asking your barber for specific hairstyle.  In fact , not being   See More... "
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginHorizontal="16dp"
+                        android:textStyle="bold"                        android:textColor="@color/natural_gray"
+                        android:textSize="@dimen/_12sdp" />
+
+                </LinearLayout>
+
+
+                <LinearLayout
+                    android:orientation="horizontal"
+                    android:background="@drawable/bg_rounded"
+                    android:layout_margin="@dimen/_10sdp"
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/_45sdp"
+                    android:weightSum="3"
+                    >
+
+                    <TextView
+                        android:id="@+id/tv_Service"
+                        android:background="@drawable/bg_round"
+                        android:textSize="@dimen/_14sdp"
+                        android:gravity="center"
+                        android:layout_gravity="center"
+                        android:text="@string/services"
+                        android:layout_margin="@dimen/_5sdp"
+                        android:layout_weight="1"
+                        android:textColor="@color/white"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent">
+
+                    </TextView>
+
+                    <TextView
+                         android:id="@+id/tv_gallery"
+                        android:textSize="@dimen/_14sdp"
+                        android:gravity="center"
+                        android:textColor="@color/black"
+                        android:layout_gravity="center"
+                        android:text="@string/gallery"
+                        android:layout_marginRight="@dimen/_5sdp"
+                        android:layout_marginVertical="@dimen/_5sdp"
+                        android:layout_weight="1"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent">
+
+                    </TextView>
+
+                    <TextView
+                         android:textColor="@color/black"
+                        android:id="@+id/tv_Reviews"
+                        android:textSize="@dimen/_14sdp"
+                        android:gravity="center"
+                        android:layout_gravity="center"
+                        android:text="@string/comments"
+                        android:layout_marginRight="@dimen/_5sdp"
+                        android:layout_marginVertical="@dimen/_5sdp"
+                        android:layout_weight="1"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent">
+
+                    </TextView>
+
+
+                </LinearLayout>
+
+
+
+
+            </LinearLayout>
+
+
+        </ScrollView>
+
+
+        <FrameLayout
+            android:layout_width="match_parent"
+            android:layout_weight="1"
+            android:layout_height="0dp"
+            android:id="@+id/frame"/>
+
+
+    </LinearLayout>
+
+</layout>

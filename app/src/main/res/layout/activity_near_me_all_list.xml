@@ -1,0 +1,113 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    >
+
+    <LinearLayout
+        android:background="@drawable/gradient"
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <LinearLayout
+                android:orientation="horizontal"
+                android:id="@+id/RR_toolbaar"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/_45sdp">
+
+                <RelativeLayout
+                    android:id="@+id/RRBack"
+                    android:layout_width="@dimen/_45sdp"
+                    android:layout_height="match_parent">
+
+                    <ImageView
+                        android:padding="@dimen/_4sdp"
+                        android:layout_centerInParent="true"
+                        android:src="@drawable/backnew"
+                        android:layout_width="@dimen/_25sdp"
+                        android:layout_height="@dimen/_25sdp">
+
+                    </ImageView>
+                </RelativeLayout>
+
+                <TextView
+                    android:gravity="center"
+                    android:layout_marginLeft="@dimen/_10sdp"
+                    android:layout_centerVertical="true"
+                    android:id="@+id/sihn"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:fontFamily="@font/poppins_regular"
+                    android:text="@string/near_me"
+                    android:textColor="@color/black"
+                    android:textSize="@dimen/_14sdp"
+                    android:textStyle="bold" />
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_marginTop="@dimen/_16sdp"
+                android:orientation="horizontal"
+                android:layout_marginHorizontal="@dimen/_20sdp"
+                android:layout_gravity="center"
+                android:visibility="gone"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <androidx.appcompat.widget.AppCompatButton
+                    android:id="@+id/btn_List"
+                    android:layout_width="0dp"
+                    android:layout_weight="1"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                     android:layout_margin="@dimen/_10sdp"
+                    android:background="@drawable/bg_blue_border"
+                    android:gravity="center"
+                    android:text="@string/list"
+                    android:textAllCaps="false"
+                    android:textColor="@color/white"
+                    android:textSize="@dimen/_14sdp" />
+
+                <androidx.appcompat.widget.AppCompatButton
+                    android:layout_width="0dp"
+                    android:layout_weight="1"
+                    android:id="@+id/btn_Map"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="@dimen/_10sdp"
+                    android:layout_gravity="center"
+                    android:background="@drawable/border_blue"
+                    android:gravity="center"
+                    android:text="@string/map"
+                    android:textAllCaps="false"
+                    android:textColor="@color/blue"
+                    android:textSize="@dimen/_14sdp" />
+
+            </LinearLayout>
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                tools:context=".Activity.HomeActivity"
+                >
+
+                <FrameLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:id="@+id/frame"
+                    />
+
+            </RelativeLayout>
+
+        </LinearLayout>
+
+    </LinearLayout>
+
+</layout>

@@ -1,0 +1,289 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@drawable/gradient">
+
+        <RelativeLayout
+            android:id="@+id/rr_main"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/_60sdp">
+
+            <RelativeLayout
+                android:layout_width="@dimen/_50sdp"
+                android:layout_height="match_parent"
+                android:visibility="gone">
+
+                <ImageView
+                    android:layout_width="@dimen/_20sdp"
+                    android:layout_height="@dimen/_20sdp"
+                    android:layout_centerInParent="true"
+                    android:src="@drawable/nav">
+
+                </ImageView>
+
+            </RelativeLayout>
+
+            <ImageView
+                android:layout_width="@dimen/_130sdp"
+                android:layout_height="@dimen/_30sdp"
+                android:layout_alignParentLeft="true"
+                android:layout_centerInParent="true"
+                android:src="@drawable/logo">
+
+            </ImageView>
+
+            <RelativeLayout
+                android:id="@+id/RRPost"
+                android:layout_width="@dimen/_50sdp"
+                android:layout_height="match_parent"
+                android:layout_alignParentRight="true">
+
+                <de.hdodenhof.circleimageview.CircleImageView
+                    android:id="@+id/cv_image"
+                    android:layout_width="@dimen/_32sdp"
+                    android:layout_height="@dimen/_32sdp"
+                    android:layout_centerInParent="true"
+                    android:src="@drawable/user_placeholder">
+
+                </de.hdodenhof.circleimageview.CircleImageView>
+
+            </RelativeLayout>
+
+
+        </RelativeLayout>
+
+
+        <androidx.core.widget.NestedScrollView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_below="@id/rr_main">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@color/white"
+                android:orientation="vertical">
+
+
+                <LinearLayout
+                    android:id="@+id/ll_Main"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:orientation="vertical">
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="@dimen/_55sdp"
+                        android:orientation="horizontal">
+                        >
+
+                        <RelativeLayout
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_margin="@dimen/_10sdp"
+                            android:layout_weight="1"
+                            android:focusable="true"
+
+                            android:background="@drawable/search_background"
+                            android:gravity="center_vertical"
+                            android:orientation="horizontal">
+
+                            <EditText
+                                android:id="@+id/relative_searchBtn"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_marginHorizontal="@dimen/_15sdp"
+                                android:layout_marginLeft="@dimen/_10sdp"
+                                android:layout_toLeftOf="@+id/imgLeftMenu"
+                                android:background="@null"
+                                android:cursorVisible="true"
+                                android:focusable="true"
+                                android:hint="@string/search_shop"
+                                android:inputType="text"
+                                android:padding="@dimen/_5sdp"
+                                android:textColorHint="@color/black"
+                                android:textSize="@dimen/_16sdp" />
+
+
+                            <ImageView
+                                android:id="@+id/imgLeftMenu"
+                                android:layout_width="24dp"
+                                android:layout_height="24dp"
+                                android:layout_alignParentRight="true"
+                                android:layout_centerInParent="true"
+                                android:layout_marginHorizontal="@dimen/_15sdp"
+                                android:layout_marginVertical="5dp"
+                                android:adjustViewBounds="true"
+                                android:scaleType="fitCenter"
+                                android:src="@drawable/outline"
+                                app:tint="@color/et_color" />
+
+                        </RelativeLayout>
+
+                    </LinearLayout>
+                    <RelativeLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="@dimen/_130sdp">
+
+                    <androidx.viewpager.widget.ViewPager
+                        android:id="@+id/view_pager"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent" />
+
+                        <LinearLayout
+                            android:id="@+id/layoutBars"
+                            android:layout_width="match_parent"
+                            android:layout_height="@dimen/_40sdp"
+                            android:layout_alignParentBottom="true"
+                            android:gravity="center"
+                            android:orientation="horizontal"></LinearLayout>
+                    </RelativeLayout>
+
+                    <RelativeLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="@dimen/_10sdp">
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_alignParentLeft="true"
+                            android:layout_centerVertical="true"
+                            android:layout_marginLeft="@dimen/_15sdp"
+                            android:padding="@dimen/_5sdp"
+                            android:text="@string/top_category"
+                            android:textColor="@color/black"
+                            android:textSize="@dimen/_14sdp"
+                            android:textStyle="bold">
+
+                        </TextView>
+
+                        <TextView
+                            android:id="@+id/tv_allcategory"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_alignParentRight="true"
+                            android:layout_centerVertical="true"
+                            android:layout_marginRight="@dimen/_15sdp"
+                            android:padding="@dimen/_5sdp"
+                            android:text="@string/see_all"
+                            android:textColor="@color/blue"
+                            android:textStyle="bold">
+
+                        </TextView>
+
+                    </RelativeLayout>
+
+                    <androidx.recyclerview.widget.RecyclerView
+                        android:id="@+id/recyclerCategory"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_centerVertical="true"
+                        android:layout_margin="@dimen/_7sdp"
+                        android:background="@color/white"
+                        android:layoutDirection="rtl"
+                        android:scrollbars="vertical"
+                        android:visibility="visible" />
+
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="@dimen/_5sdp">
+                        <TextView
+                            android:id="@+id/tvFavourite"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_alignParentLeft="true"
+                            android:layout_centerVertical="true"
+                            android:layout_marginLeft="@dimen/_15sdp"
+                            android:paddingVertical="@dimen/_5sdp"
+                            android:paddingHorizontal="@dimen/_10sdp"
+                            android:text="@string/favourite"
+                            android:gravity="center"
+                            android:textColor="@color/black"
+                            android:textSize="@dimen/_14sdp"
+                            android:textStyle="bold">
+
+                        </TextView>
+                        <TextView
+                            android:id="@+id/tvNear"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_alignParentLeft="true"
+                            android:layout_centerVertical="true"
+                            android:paddingVertical="@dimen/_5sdp"
+                            android:paddingHorizontal="@dimen/_10sdp"
+                            android:layout_toRightOf="@id/tvFavourite"
+                            android:gravity="center"
+                            android:background="@drawable/search_background"
+                            android:text="@string/near_me"
+                            android:textColor="@color/black"
+                            android:textSize="@dimen/_14sdp"
+                            android:textStyle="bold">
+
+                        </TextView>
+<View
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_weight="1"/>
+
+                        <TextView
+                            android:id="@+id/txtNearme"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_alignParentRight="true"
+                            android:layout_centerVertical="true"
+                            android:layout_marginRight="@dimen/_15sdp"
+                            android:padding="@dimen/_5sdp"
+                            android:text="@string/see_all"
+                            android:textColor="@color/blue"
+                            android:textStyle="bold">
+
+                        </TextView>
+
+                    </LinearLayout>
+
+                    <RelativeLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content">
+                        <androidx.recyclerview.widget.RecyclerView
+                            android:id="@+id/recyclernearme"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_centerVertical="true"
+                            android:layout_margin="@dimen/_7sdp"
+                            android:visibility="visible" />
+
+                        <androidx.recyclerview.widget.RecyclerView
+                            android:id="@+id/recyclernearfavourite"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_centerVertical="true"
+                            android:layout_margin="@dimen/_7sdp"
+                            android:visibility="gone" />
+                    </RelativeLayout>
+
+
+
+                </LinearLayout>
+
+
+            </LinearLayout>
+
+        </androidx.core.widget.NestedScrollView>
+
+        <include
+            android:id="@+id/loader_layout"
+            layout="@layout/loader"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent" />
+
+
+    </RelativeLayout>
+
+</layout>
