@@ -41,6 +41,8 @@ public class BookingDetails extends AppCompatActivity {
     private ResultItem item;
     private String providerUserId;
 
+    private Boolean test;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
