@@ -27,19 +27,19 @@
                     android:padding="@dimen/_5sdp"
                     android:layout_marginTop="@dimen/_40sdp"
                     android:id="@+id/iv_Logo"
-                    android:layout_width="@dimen/_55sdp"
-                    android:layout_height="@dimen/_55sdp"
-                    android:scaleType="centerCrop"
-                    android:src="@drawable/logo_one" />
+                    android:layout_width="@dimen/_180sdp"
+                    android:layout_height="@dimen/_50sdp"
+                    android:scaleType="fitXY"
+                    android:src="@drawable/logo" />
 
 
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="@dimen/_12sdp"
                     android:text="@string/wellcome_back_to"
                     android:textColor="@color/black"
                     android:textStyle="bold"
+                    android:layout_marginTop="@dimen/_10sdp"
                     android:textSize="@dimen/_22sdp" />
 
                 <TextView
@@ -47,6 +47,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="@string/login"
+                    android:visibility="gone"
                     android:textColor="@color/black"
                     android:textStyle="bold"
                     android:textSize="@dimen/_22sdp" />

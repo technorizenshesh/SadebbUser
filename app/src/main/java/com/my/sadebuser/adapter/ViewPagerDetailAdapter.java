@@ -13,6 +13,7 @@ import androidx.viewpager.widget.PagerAdapter;
 
 
 import com.my.sadebuser.R;
+import com.my.sadebuser.model.SuccessResGetBanner;
 import com.my.sadebuser.utils.RoundedCornersTransform;
 import com.squareup.picasso.Picasso;
 
@@ -25,7 +26,7 @@ public class ViewPagerDetailAdapter extends PagerAdapter {
     Context context;
 
     // Array of images
-    ArrayList<Integer> images;
+    ArrayList<SuccessResGetBanner.Result> images;
 
     // Layout Inflater
     LayoutInflater mLayoutInflater;
@@ -36,7 +37,7 @@ public class ViewPagerDetailAdapter extends PagerAdapter {
         mLayoutInflater = (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
     }
 
-    public void setImages(ArrayList<Integer> images) {
+    public void setImages(ArrayList<SuccessResGetBanner.Result> images) {
         this.images = images;
     }
 
@@ -63,7 +64,7 @@ public class ViewPagerDetailAdapter extends PagerAdapter {
         // setting the image in the imageView
 //        imageView.setImageResource(images[position]);
 //        Glide.with(context).load(images.get(position)).into(imageView);
-        Picasso.get().load(images.get(position))/*.transform(new RoundedCornersTransform())*/.into(imageView);
+        Picasso.get().load(images.get(position).getImage())/*.transform(new RoundedCornersTransform())*/.into(imageView);
 
         // Adding the View
         Objects.requireNonNull(container).addView(itemView);

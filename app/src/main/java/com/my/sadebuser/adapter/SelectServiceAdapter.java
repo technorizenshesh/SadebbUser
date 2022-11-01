@@ -34,7 +34,7 @@ public class SelectServiceAdapter extends RecyclerView.Adapter<SelectServiceAdap
     @Override
     public void onBindViewHolder(SelectServiceAdapter.SelectServiceAdapter_View holder, int position) {
         holder.tv_Service_Name.setText(list.get(position).getServiceName());
-        holder.service_price.setText("$" + list.get(position).getServicePrice() + ".00");
+        holder.service_price.setText("$" + list.get(position).getServicePrice() );
         Picasso.get().load(list.get(position).getServiceImage()).placeholder(R.drawable.user_placeholder).into(holder.image);
 
         holder.check.setOnClickListener(v -> {

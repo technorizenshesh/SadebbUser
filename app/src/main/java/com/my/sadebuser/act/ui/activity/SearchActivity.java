@@ -54,7 +54,7 @@ public class SearchActivity extends AppCompatActivity {
 
     private void init(){
          binding.rvSuggestion.setLayoutManager(new LinearLayoutManager(this,RecyclerView.VERTICAL,false));
-        adapter = new HomeSaloonRecyclerViewAdapter(this, serviceproviderlist, new HomeSaloonRecyclerViewAdapter.ItemPos() {
+        adapter = new HomeSaloonRecyclerViewAdapter("",this, serviceproviderlist, new HomeSaloonRecyclerViewAdapter.ItemPos() {
             @Override
             public void selectedpos(int pos) {
                 allServicelist(serviceproviderlist.get(pos).getId());
@@ -62,6 +62,11 @@ public class SearchActivity extends AppCompatActivity {
                 Provider_id=serviceproviderlist.get(pos).getId();
                 provider_img=serviceproviderlist.get(pos).getImage();
                 binding.loaderLayout.loader.setVisibility(View.VISIBLE);
+            }
+
+            @Override
+            public void addFavourite(int pos) {
+
             }
         });
 
@@ -88,7 +93,7 @@ public class SearchActivity extends AppCompatActivity {
                                         serviceproviderlist = new ArrayList<>();
                                         ServiceProviderListResponse authentication = new Gson().fromJson(object, ServiceProviderListResponse.class);
                                         serviceproviderlist.addAll(authentication.getResult());
-                                        adapter = new HomeSaloonRecyclerViewAdapter(SearchActivity.this, serviceproviderlist, new HomeSaloonRecyclerViewAdapter.ItemPos() {
+                                        adapter = new HomeSaloonRecyclerViewAdapter("",SearchActivity.this, serviceproviderlist, new HomeSaloonRecyclerViewAdapter.ItemPos() {
                                             @Override
                                             public void selectedpos(int pos) {
                                                 allServicelist(serviceproviderlist.get(pos).getId());
@@ -96,6 +101,11 @@ public class SearchActivity extends AppCompatActivity {
                                                 Provider_id=serviceproviderlist.get(pos).getId();
                                                 provider_img=serviceproviderlist.get(pos).getImage();
                                                 binding.loaderLayout.loader.setVisibility(View.VISIBLE);
+
+                                            }
+
+                                            @Override
+                                            public void addFavourite(int pos) {
 
                                             }
                                         });

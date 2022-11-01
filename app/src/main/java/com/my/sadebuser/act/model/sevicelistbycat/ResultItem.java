@@ -1,5 +1,6 @@
 package com.my.sadebuser.act.model.sevicelistbycat;
 
+import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 
 public class ResultItem {
@@ -94,7 +95,9 @@ public class ResultItem {
 
     @SerializedName("service_like_unlike")
     private String favorite;
-
+    @SerializedName("fav_provider")
+    @Expose
+    private String favProvider;
 
     public void setImage5(String image5) {
         this.image5 = image5;
@@ -110,6 +113,14 @@ public class ResultItem {
 
     public String getServiceTime() {
         return serviceTime;
+    }
+
+    public String getFavProvider() {
+        return favProvider;
+    }
+
+    public void setFavProvider(String favProvider) {
+        this.favProvider = favProvider;
     }
 
     public void setImage6(String image6) {

@@ -30,14 +30,12 @@ public class HomeCategoryRecyclerViewAdapter extends RecyclerView.Adapter<Recycl
     private final ArrayList<ResultItem> modelList;
     private OnItemClickListener mItemClickListener;
 
-    public HomeCategoryRecyclerViewAdapter(Context context, List<ResultItem> modelList) {
+    public HomeCategoryRecyclerViewAdapter(Context context, List<ResultItem> modelList,OnItemClickListener mItemClickListener) {
         this.mContext = context;
         this.modelList = (ArrayList<ResultItem>) modelList;
+        this.mItemClickListener = mItemClickListener;
 
      }
-
-
-
 
     @Override
     public ViewHolder onCreateViewHolder(ViewGroup viewGroup, int viewType) {
@@ -62,11 +60,14 @@ public class HomeCategoryRecyclerViewAdapter extends RecyclerView.Adapter<Recycl
                     ((ViewHolder) holder).cv_Main.getContext().startActivity(intent);
                 });
                 try {
-                    if (modelList.get(position).getImage() == null && !modelList.get(position).getImage().isEmpty()) {
-                            Picasso.get().load(modelList.get(position).getImage()).placeholder(R.drawable.categ1).into(((ViewHolder) holder).user_image);
-                    } else {
-                            Picasso.get().load("").placeholder(R.drawable.categ1).into(((ViewHolder) holder).user_image);
-                    }
+
+//                    if (modelList.get(position).getImage() == null && !modelList.get(position).getImage().isEmpty()) {
+//                            Picasso.get().load(modelList.get(position).getImage()).placeholder(R.drawable.categ1).into(((ViewHolder) holder).user_image);
+//                    } else {
+//                            Picasso.get().load("").placeholder(R.drawable.categ1).into(((ViewHolder) holder).user_image);
+//                    }
+                    Picasso.get().load(modelList.get(position).getImage()).placeholder(R.drawable.ic_image_not_found).into(((ViewHolder) holder).user_image);
+
                 }catch (Exception e){
                     e.printStackTrace();
                     if(position==0||position==4){

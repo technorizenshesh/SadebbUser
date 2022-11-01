@@ -150,11 +150,10 @@
                             android:text="@string/book_"
                             android:textAlignment="center"
                             android:textColor="@color/white"
-                            android:textSize="@dimen/_14sdp"
+                            android:textSize="@dimen/_12sdp"
                             android:textStyle="bold"
                             tools:ignore="RtlCompat" />
                     </LinearLayout>
-
 
                 </LinearLayout>
                 <TextView

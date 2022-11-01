@@ -100,8 +100,8 @@
                                 android:layout_marginLeft="@dimen/_10sdp"
                                 android:layout_toLeftOf="@+id/imgLeftMenu"
                                 android:background="@null"
-                                android:cursorVisible="true"
-                                android:focusable="true"
+                                android:focusable="false"
+                                android:editable="false"
                                 android:hint="@string/search_shop"
                                 android:inputType="text"
                                 android:padding="@dimen/_5sdp"
@@ -129,10 +129,10 @@
                         android:layout_width="match_parent"
                         android:layout_height="@dimen/_130sdp">
 
-                    <androidx.viewpager.widget.ViewPager
-                        android:id="@+id/view_pager"
-                        android:layout_width="match_parent"
-                        android:layout_height="match_parent" />
+                        <androidx.viewpager.widget.ViewPager
+                            android:id="@+id/view_pager"
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent" />
 
                         <LinearLayout
                             android:id="@+id/layoutBars"

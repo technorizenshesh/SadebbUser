@@ -1,5 +1,6 @@
 package com.my.sadebuser.act.model.serviceprovider;
 
+import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 
 public class ResultItem{
@@ -34,7 +35,29 @@ public class ResultItem{
 	@SerializedName("offer_home_delivery")
 	private String offer_home_delivery;
 
+	@SerializedName("sid")
+	@Expose
+	private String sid;
 
+	public String getSid() {
+		return sid;
+	}
+
+	public String getProviderId() {
+		return providerId;
+	}
+
+	public void setProviderId(String providerId) {
+		this.providerId = providerId;
+	}
+
+	@SerializedName("provider_id")
+	@Expose
+	private String providerId;
+
+	public void setSid(String sid) {
+		this.sid = sid;
+	}
 
 	@SerializedName("b_lat")
 	private String b_lat;
@@ -122,6 +145,10 @@ public class ResultItem{
 	@SerializedName("rating")
 	private String rating;
 
+	@SerializedName("fav_provider")
+	@Expose
+	private String favProvider;
+
 	public String getB_lat() {
 		return b_lat;
 	}
@@ -160,6 +187,14 @@ public class ResultItem{
 
 	public void setBusiness_profile_image(String business_profile_image) {
 		this.business_profile_image = business_profile_image;
+	}
+
+	public String getFavProvider() {
+		return favProvider;
+	}
+
+	public void setFavProvider(String favProvider) {
+		this.favProvider = favProvider;
 	}
 
 	public String getImage1() {

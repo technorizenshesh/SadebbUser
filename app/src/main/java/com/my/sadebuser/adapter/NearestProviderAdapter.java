@@ -1,5 +1,6 @@
 package com.my.sadebuser.adapter;
 
+import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -19,9 +20,13 @@ public class NearestProviderAdapter extends RecyclerView.Adapter<NearestProvider
 
     private List<ResultItem> list;
     private  SelectedPosition   selectedPosition;
-    public NearestProviderAdapter(List<ResultItem> list,SelectedPosition selectedPosition) {
+
+    private Context mContext;
+
+    public NearestProviderAdapter(Context mContext,List<ResultItem> list,SelectedPosition selectedPosition) {
         this.list=list;
         this.selectedPosition=selectedPosition;
+        this.mContext = mContext;
     }
 
     @Override
@@ -33,7 +38,7 @@ public class NearestProviderAdapter extends RecyclerView.Adapter<NearestProvider
     @Override
     public void onBindViewHolder( NearestProviderAdapter.NearestProviderAdapter_View holder, int position) {
         holder.binding.tvName.setText(list.get(position).getBusiness_name());//UserName());
-        holder.binding.tvDetail.setText("Address: "+list.get(position).getBusiness_address());//Description());
+        holder.binding.tvDetail.setText(mContext.getString(R.string.address_)+list.get(position).getBusiness_address());//Description());
         holder.binding.tvNumber.setText("Cellf: "+list.get(position).getMobile()+"\n"+"Telf: "+list.get(position).getBusiness_landline());
 
 //        Picasso.get().load(list.get(position).getImage()).placeholder(R.drawable.user_placeholder).into(holder.binding.img1);
@@ -49,12 +54,10 @@ public class NearestProviderAdapter extends RecyclerView.Adapter<NearestProvider
 
         holder.binding.favorite.setVisibility(View.GONE);
     }
-
     @Override
     public int getItemCount() {
         return list.size();
     }
-
     public class NearestProviderAdapter_View extends RecyclerView.ViewHolder {
         private ItemSalooonBinding binding;
         public NearestProviderAdapter_View(ItemSalooonBinding binding) {

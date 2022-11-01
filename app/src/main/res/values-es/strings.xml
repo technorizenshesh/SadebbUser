@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <string name="app_name">SadebUser</string>
-    <string name="see_all"><U>Seleccionar todo</U></string>
+    <string name="see_all"><U>Ver todo</U></string>
     <!--    Register-->
     <string name="enter_Name">Ingrese su nombre</string>
     <string name="text_register_no">Enter No</string>
@@ -10,7 +10,6 @@
     <string name="text_register_password">Ingrese una contraseña larga</string>
     <string name="text_register_not_matched">Contraseña no coincidente</string>
     <string name="exist">You Don\'t Exist</string>
-
     <string name="text_register_term">Aceptar término y condición</string>
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hola fragmento en blanco</string>
@@ -24,7 +23,6 @@
     <string name="second_fragment_label">Segundo Fragmentot</string>
     <string name="next">Siguiente</string>
     <string name="previous">Anterior</string>
-
     <string name="hello_first_fragment">Hola Primer fragmento</string>
     <string name="hello_second_fragment">Hola segundo fragmento. Arg: %1$s</string>
     <string name="confirm">Cconfirmar</string>
@@ -42,7 +40,7 @@
     <string name="services">Servicios</string>
     <string name="charges">Total</string>
     <string name="subtotal">SubTotal</string>
-    <string name="book">Libro</string>
+    <string name="book">Agendar</string>
     <string name="services_cost">Costo del servicio</string>
     <string name="tax_10">ITBMS @ 10 %</string>
     <string name="your_request_is_successfully_sent_to_admin">Su solicitud se envió correctamente al administrador</string>
@@ -60,7 +58,7 @@
     <string name="forgot_password">Has olvidado tu contraseña</string>
     <string name="enter_your_email_and_will_send_your_instruction_on_how_to_reset_your_password">Ingrese su correo electrónico y le enviará sus instrucciones sobre cómo restablecer su contraseña</string>
     <string name="email">Email</string>
-    <string name="send">Send</string>
+    <string name="send">Enviar</string>
     <string name="invite_your_friends">Invita a tus amig@s</string>
     <string name="refer_friends_to_get_ahed_in_the_n_queu_5_friends">Refer friends to get ahed in the<br/> (queu (5 friends))</string>
     <string name="just_share_this_code_with_your_friends_and_ask_them_to_signup_and_add_this_code_both_of_you_will_get_ahead_of_the_waitlist">Simplemente comparta este código con sus amigos y pídales que se registren y agreguen este código. Ambos se adelantarán a la lista de espera..</string>
@@ -74,11 +72,11 @@
     <string name="home">Incio</string>
     <string name="my_booking">Mis citas</string>
     <string name="notification">Notificaciones</string>
-    <string name="account">Cuentas</string>
+    <string name="account">Cuenta</string>
     <string name="near_me">Cerca de mi</string>
     <string name="list">Listas</string>
     <string name="map">Mapa</string>
-    <string name="we_have_successfully_sent_password_to_your_nto_your_registered_email">We have successfully sent password to your\nto your registered email</string>
+    <string name="we_have_successfully_sent_password_to_your_nto_your_registered_email">Hemos enviado con éxito la contraseña a su \n a su correo electrónico registrado</string>
     <string name="go_to_login">ir a iniciar sesión </string>
     <string name="payment">Pago</string>
     <string name="credit_card_or_debit">Tarjeta de crédito o débito</string>
@@ -92,12 +90,12 @@
     <string name="phone_number">Numero de telefono</string>
     <string name="change_password">Cambiar contraseña</string>
     <string name="invite_friends">Invitar a tus amigos</string>
-    <string name="logout">Logout</string>
+    <string name="logout">Cerrar sesión</string>
     <string name="all_providers">Todos los negocios</string>
     <string name="sorry_no_user_found">Lo sentimos, no se ha encontrado ninguna usuario.</string>
     <string name="full_name">Nombre y apellidos</string>
     <string name="mobile_number">Numero de celular</string>
-    <string name="email_address">email</string>
+    <string name="email_address">Email</string>
     <string name="confirm_password">Confirmar contraseñas</string>
     <string name="i_agree_to_the_terms_and_condition">Estoy de acuerdo con los términos y condiciones</string>
     <string name="already_have_an_account">¿Ya tienes una cuenta?</string>
@@ -125,7 +123,7 @@
     <string name="write_your_review">Escribe tu reseña</string>
     <string name="please_select_option">Por favor seleccione la opción :-</string>
     <string name="online">En línea</string>
-    <string name="book_">Agenda</string>
+    <string name="book_">Agendar</string>
     <string name="read_more">Leer mas</string>
     <string name="add_review">Agregar una opinión</string>
     <string name="rating">Clasificación</string>
@@ -139,8 +137,8 @@
     <string name="please_select_time_availability">Por favor seleccione Disponibilidad de tiempo</string>
     <string name="there_is_no_service">No hay servicio</string>
     <string name="provider_name">Nombre del negocio:- %1$s</string>
-    <string name="start">start :- %1$s</string>
-    <string name="end">end:- %1$s</string>
+    <string name="start">comienzo :- %1$s</string>
+    <string name="end">final:- %1$s</string>
     <string name="accepted">Aceptado</string>
     <string name="remove">Eliminar</string>
     <string name="press_once_again_to_exit">Presione una vez más para salir</string>
@@ -152,12 +150,17 @@
     <string name="surname">Apellido</string>
     <string name="change_language">cambiar idioma</string>
     <string name="message_active_account">Te hemos enviado un mensaje para activar la cuenta.</string>
-    <string name="address_">Habla a: </string>
+    <string name="address_">Dirección: </string>
     <string name="completed">Terminado</string>
     <string name="comments">Comentarios</string>
     <string name="favourite">Mis favoritos</string>
     <string name="pending">Pendiente</string>
     <string name="link_sent_to_email">Se ha enviado un enlace a su correo electronico para activar la cuenta de su negocio</string>
+    <string name="first_name">Nombre</string>
+    <string name="last_name">Apellidos</string>
+    <string name="enter_first_name">Ingrese el nombre</string>
+    <string name="enter_last_name">Introduzca el apellido</string>
+    <string name="permisson_denied">Permiso denegado.</string>
 </resources>
 
 <!--

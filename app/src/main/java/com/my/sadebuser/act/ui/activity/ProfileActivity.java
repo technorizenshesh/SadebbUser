@@ -86,7 +86,16 @@ public class ProfileActivity extends AppCompatActivity {
             startActivity(new Intent(this, UpdatePassword.class));
         });
         binding.RRInvite.setOnClickListener(v -> {
-            startActivity(new Intent(this, InviteFriends.class));
+
+            String link = "https://play.google.com/store/apps/";
+            Uri uri = Uri.parse(link);
+            Intent intent = new Intent(Intent.ACTION_SEND);
+            intent.setType("text/plain");
+            intent.putExtra(Intent.EXTRA_TEXT, link.toString());
+
+            startActivity(Intent.createChooser(intent, "Share Link"));
+
+//            startActivity(new Intent(this, InviteFriends.class));
         });
 
         binding.llMain.setOnClickListener(v -> {

@@ -1,7 +1,9 @@
 package com.my.sadebuser.act.ui.Fragment;
 
+import android.Manifest;
 import android.content.Context;
 import android.content.Intent;
+import android.content.pm.PackageManager;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -12,27 +14,33 @@ import android.widget.LinearLayout;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
+import androidx.core.app.ActivityCompat;
 import androidx.core.content.ContextCompat;
 import androidx.databinding.DataBindingUtil;
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.viewpager.widget.ViewPager;
 
+import com.google.android.material.snackbar.Snackbar;
 import com.google.gson.Gson;
 import com.google.gson.JsonElement;
 import com.google.gson.JsonObject;
 import com.my.sadebuser.R;
+import com.my.sadebuser.act.model.ResponseAuthError;
 import com.my.sadebuser.act.model.ResponseAuthentication;
+import com.my.sadebuser.act.model.bookingdetail.BookingResponse;
 import com.my.sadebuser.act.model.category.CategoryResponse;
 import com.my.sadebuser.act.model.servicelist.FavouriteAllServiceResponse;
 import com.my.sadebuser.act.model.serviceprovider.ResultItem;
 import com.my.sadebuser.act.model.serviceprovider.ServiceProviderListResponse;
 import com.my.sadebuser.act.network.NetworkConstraint;
 import com.my.sadebuser.act.network.RetrofitClient;
+import com.my.sadebuser.act.network.request.bookingdetail.BookingRequest;
 import com.my.sadebuser.act.network.request.category.CategoryRequest;
 import com.my.sadebuser.act.network.request.service.Serviecs;
 import com.my.sadebuser.act.network.request.serviceprovider.ServiceProvider;
 import com.my.sadebuser.act.ui.activity.AllCategoryActivity;
+import com.my.sadebuser.act.ui.activity.BookingDetails;
 import com.my.sadebuser.act.ui.activity.NearMeAllListActivity;
 import com.my.sadebuser.act.ui.activity.SearchActivity;
 import com.my.sadebuser.act.ui.activity.ShopDetailsActivity;
@@ -42,6 +50,8 @@ import com.my.sadebuser.adapter.ServiceListByCatAdapter;
 import com.my.sadebuser.adapter.ServiceListByCatFavouriteAdapter;
 import com.my.sadebuser.adapter.ViewPagerDetailAdapter;
 import com.my.sadebuser.model.HomeModel;
+import com.my.sadebuser.model.SuccessResGetBanner;
+import com.my.sadebuser.utils.GPSTracker;
 import com.my.sadebuser.utils.SharePrefrenceConstraint;
 import com.my.sadebuser.utils.SharedPrefsManager;
 import com.squareup.picasso.Picasso;
@@ -50,6 +60,7 @@ import org.json.JSONObject;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Locale;
 
 import okhttp3.ResponseBody;
 import retrofit2.Call;
@@ -66,6 +77,14 @@ public class HomeFragment extends Fragment {
     private HomeSaloonRecyclerViewAdapter mAdapter;
     private HomeCategoryRecyclerViewAdapter mAdapterCategory;
 
+    private String strLat="",strLng="";
+
+    private int LOCATION_REQUEST = 101;
+
+    private GPSTracker gpsTracker;
+
+    private boolean isFavourite = false;
+
     private List<FavouriteAllServiceResponse.ResultItem> serviceproviderlistFavourite = new ArrayList<>();
     ServiceListByCatFavouriteAdapter listByCatFavouriteAdapter;
     private int API_COUNT;
@@ -77,18 +96,20 @@ public class HomeFragment extends Fragment {
     int dotsCount;
     ImageView[] dots;
     ViewPagerDetailAdapter viewPagerAdapter;
-    ArrayList<Integer> listImages;
+    ArrayList<SuccessResGetBanner.Result> bannerList;
     Context context;
 
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
         context=getActivity();
         binding = DataBindingUtil.inflate(inflater, R.layout.fragment_home, container, false);
+
+        gpsTracker = new GPSTracker(getActivity());
+
         model = SharedPrefsManager.getInstance().getObject(SharePrefrenceConstraint.user, ResponseAuthentication.class);
         if (model!=null){
              Picasso.get().load(model.getResult().getImage()).placeholder(R.drawable.user_placeholder).into(binding.cvImage);
         }
-
         binding.txtNearme.setOnClickListener(v -> {
             startActivity(new Intent(getActivity(), NearMeAllListActivity.class));
         });
@@ -103,45 +124,171 @@ public class HomeFragment extends Fragment {
 
         binding.relativeSearchBtn.setFocusable(true);
         binding.relativeSearchBtn.setCursorVisible(true);
-
         binding.tvNear.setOnClickListener(v -> {
+            isFavourite = false;
             binding.tvNear.setBackgroundResource(R.drawable.search_background);
             binding.tvFavourite.setBackgroundResource(R.drawable.bg_round_white);
             binding.txtNearme.setVisibility(View.VISIBLE);
             binding.recyclernearfavourite.setVisibility(View.GONE);
             binding.recyclernearme.setVisibility(View.VISIBLE);
+            providerList();
         });
 
         binding.tvFavourite.setOnClickListener(v -> {
+            isFavourite = true;
             binding.tvFavourite.setBackgroundResource(R.drawable.search_background);
             binding.tvNear.setBackgroundResource(R.drawable.bg_round_white);
             binding.txtNearme.setVisibility(View.INVISIBLE);
-            binding.recyclernearfavourite.setVisibility(View.VISIBLE);
-            binding.recyclernearme.setVisibility(View.GONE);
-            favouriteList();
+            binding.recyclernearfavourite.setVisibility(View.GONE);
+            binding.recyclernearme.setVisibility(View.VISIBLE);
+            getFavourite();
         });
 
-        listImages = new ArrayList<>();
-        listImages.add(R.drawable.barbershop);
-        listImages.add(R.drawable.spa);
-        viewPagerAdapter = new ViewPagerDetailAdapter(context);
-        viewPagerAdapter.setImages(listImages);
-        binding.viewPager.setAdapter(viewPagerAdapter);
-        setViewPager();
         return binding.getRoot();
     }
 
     @Override
     public void onResume() {
         super.onResume();
-        providerList();
+        getLoc();
         CategoryResponse();
+        getBannerList();
+    }
+
+   private void getLoc()
+    {
+        if (ActivityCompat.checkSelfPermission(getContext(),
+                android.Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED &&
+                ActivityCompat.checkSelfPermission(getContext(),
+                        android.Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
+            requestPermissions(
+                    new String[]{android.Manifest.permission.ACCESS_COARSE_LOCATION,
+                            android.Manifest.permission.ACCESS_FINE_LOCATION},
+                    LOCATION_REQUEST);
+        } else {
+            Log.e("DB", "PERMISSION GRANTED");
+            strLat = Double.toString(gpsTracker.getLatitude());
+            strLng = Double.toString(gpsTracker.getLongitude());
+            providerList();
+        }
+    }
+
+    private void getFavourite()
+    {
+        binding.llMain.setVisibility(View.GONE);
+        binding.loaderLayout.loader.setVisibility(View.VISIBLE);
+
+        RetrofitClient.getClient(NetworkConstraint.BASE_URL)
+                .create(ServiceProvider.class)
+                .getFavouriteProviderList(model.getResult().getId())
+                .enqueue(new Callback<ServiceProviderListResponse>() {
+                    @Override
+                    public void onResponse(Call<ServiceProviderListResponse> call, Response<ServiceProviderListResponse> response) {
+//                        ++API_COUNT;
+//                        if (API_COUNT == ALL_API_COUNT) {
+                        binding.llMain.setVisibility(View.VISIBLE);
+                        binding.loaderLayout.loader.setVisibility(View.GONE);
+
+                        serviceproviderlist=new ArrayList<>();
+                        serviceproviderlist.addAll(response.body().getResult());
+                        Log.i("sdvdc", "onResponse: "+response.toString());
+                        Log.i("sdvdc", "onResponse: "+response.body());
+                        mAdapter = new HomeSaloonRecyclerViewAdapter("home",getActivity(),serviceproviderlist, new HomeSaloonRecyclerViewAdapter.ItemPos() {
+                            @Override
+                            public void selectedpos(int pos) {
+                                allServicelist(serviceproviderlist.get(pos).getProviderId());
+                                Provider_Name = serviceproviderlist.get(pos).getBusiness_name();//UserName();
+                                Provider_id=serviceproviderlist.get(pos).getProviderId();
+                                provider_img=serviceproviderlist.get(pos).getBusiness_profile_image();
+                                binding.loaderLayout.loader.setVisibility(View.VISIBLE);
+                            }
+
+                            @Override
+                            public void addFavourite(int pos) {
+
+                                favouriteServicelist(serviceproviderlist.get(pos).getProviderId());
+
+                            }
+                        });
+                        LinearLayoutManager linearLayoutManager = new LinearLayoutManager(getActivity());
+                        binding.recyclernearme.setLayoutManager(linearLayoutManager);
+                        binding.recyclernearme.setAdapter(mAdapter);
+                        mAdapter.notifyDataSetChanged();
+                    }
+
+                    @Override
+                    public void onFailure(Call<ServiceProviderListResponse> call, Throwable t) {
+//                        ++API_COUNT;
+//                        if (API_COUNT == ALL_API_COUNT) {
+                        binding.loaderLayout.loader.setVisibility(View.GONE);
+//                        }
+                        Log.i("sfvvs", "onFailure: " + t.getMessage());
+                    }
+                });
+    }
+
+    @Override
+    public void onRequestPermissionsResult(int requestCode, String permissions[], int[] grantResults) {
+        super.onRequestPermissionsResult(requestCode, permissions, grantResults);
+        switch (requestCode) {
+
+            case 1000: {
+                // If request is cancelled, the result arrays are empty.
+                if (grantResults.length > 0
+                        && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
+                    Log.e("Latittude====", gpsTracker.getLatitude() + "");
+                    strLat = Double.toString(gpsTracker.getLatitude());
+                    strLng = Double.toString(gpsTracker.getLongitude());
+
+                    providerList();
+
+//                    if (isContinue) {
+//                        if (ActivityCompat.checkSelfPermission(getContext(), Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED && ActivityCompat.checkSelfPermission(LoginAct.this, Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
+//                            // TODO: Consider calling
+//                            //    ActivityCompat#requestPermissions
+//                            // here to request the missing permissions, and then overriding
+//                            //   public void onRequestPermissionsResult(int requestCode, String[] permissions,
+//                            //                                          int[] grantResults)
+//                            // to handle the case where the user grants the permission. See the documentation
+//                            // for ActivityCompat#requestPermissions for more details.
+//                            return;
+//                        }
+//                        mFusedLocationClient.requestLocationUpdates(locationRequest, locationCallback, null);
+//                    } else {
+//                        Log.e("Latittude====", gpsTracker.getLatitude() + "");
+//
+//                        strLat = Double.toString(gpsTracker.getLatitude()) ;
+//                        strLng = Double.toString(gpsTracker.getLongitude()) ;
+//
+//                    }
+                } else {
+                    Toast.makeText(getActivity(),getActivity().getResources().getString(R.string.permisson_denied), Toast.LENGTH_SHORT).show();
+                }
+                break;
+            }
+
+        }
+    }
+
+
+
+
+    private void getLocation() {
+        if (ActivityCompat.checkSelfPermission(getActivity(), Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED
+                && ActivityCompat.checkSelfPermission(getActivity(), Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
+            ActivityCompat.requestPermissions(getActivity(), new String[]{Manifest.permission.ACCESS_FINE_LOCATION, Manifest.permission.ACCESS_COARSE_LOCATION},
+                    LOCATION_REQUEST);
+        } else {
+            Log.e("Latittude====",gpsTracker.getLatitude()+"");
+            strLat = Double.toString(gpsTracker.getLatitude()) ;
+            strLng = Double.toString(gpsTracker.getLongitude()) ;
+        }
     }
 
     private void setViewPager() {
 
         binding.layoutBars.removeAllViews();
-        viewPagerAdapter.setImages(listImages);
+        viewPagerAdapter.setImages(bannerList);
         viewPagerAdapter.notifyDataSetChanged();
         dotsCount = viewPagerAdapter.getCount();
         dots = new ImageView[dotsCount];
@@ -162,6 +309,7 @@ public class HomeFragment extends Fragment {
             public void onPageScrolled(int position, float positionOffset, int positionOffsetPixels) {
 
             }
+
             @Override
             public void onPageSelected(int position) {
                 for (int i = 0; i < dotsCount; i++) {
@@ -176,17 +324,17 @@ public class HomeFragment extends Fragment {
             }
         });
 
-        if (listImages.size() > 1) {
+        if (bannerList.size() > 1) {
             binding.layoutBars.setVisibility(View.VISIBLE);
         } else {
             binding.layoutBars.setVisibility(View.GONE);
         }
     }
+
     private void CategoryResponse() {
         binding.llMain.setVisibility(View.GONE);
         binding.loaderLayout.loader.setVisibility(View.VISIBLE);
         String language= SharedPrefsManager.getInstance().getString("language");
-
         RetrofitClient.getClient(NetworkConstraint.BASE_URL)
                 .create(CategoryRequest.class)
                 .getCategory(language)
@@ -202,7 +350,12 @@ public class HomeFragment extends Fragment {
                         if (response != null) {
                             list=new ArrayList<>();
                             list.addAll(response.body().getResult());
-                            mAdapterCategory = new HomeCategoryRecyclerViewAdapter(getActivity(), list);
+                            mAdapterCategory = new HomeCategoryRecyclerViewAdapter(getActivity(), list, new HomeCategoryRecyclerViewAdapter.OnItemClickListener() {
+                                @Override
+                                public void onItemClick(View view, int position, com.my.sadebuser.act.model.category.ResultItem model) {
+
+                                }
+                            });
                             binding.recyclerCategory.setHasFixedSize(true);
                             LinearLayoutManager linearLayoutManager = new LinearLayoutManager(getActivity());
                             binding.recyclerCategory.setLayoutManager(new LinearLayoutManager(getActivity(), LinearLayoutManager.HORIZONTAL, true));
@@ -220,6 +373,53 @@ public class HomeFragment extends Fragment {
                 });
     }
 
+
+    private void getBannerList() {
+
+        binding.llMain.setVisibility(View.GONE);
+        binding.loaderLayout.loader.setVisibility(View.VISIBLE);
+
+        RetrofitClient.getClient(NetworkConstraint.BASE_URL)
+                .create(ServiceProvider.class)
+                .getBannerList()
+                .enqueue(new Callback<SuccessResGetBanner>() {
+                    @Override
+                    public void onResponse(Call<SuccessResGetBanner> call, Response<SuccessResGetBanner> response) {
+//                        ++API_COUNT;
+//                        if (API_COUNT == ALL_API_COUNT) {
+                        binding.llMain.setVisibility(View.VISIBLE);
+                        binding.loaderLayout.loader.setVisibility(View.GONE);
+
+                        try {
+                            bannerList=new ArrayList<>();
+                            bannerList.addAll(response.body().getResult());
+                            Log.i("sdvdc", "onResponse: "+response.toString());
+                            Log.i("sdvdc", "onResponse: "+response.body());
+                            viewPagerAdapter = new ViewPagerDetailAdapter(context);
+                            viewPagerAdapter.setImages(bannerList);
+                            binding.viewPager.setAdapter(viewPagerAdapter);
+                            setViewPager();
+
+                        }catch (Exception e)
+                        {
+
+                        }
+
+//                        }
+
+                    }
+
+                    @Override
+                    public void onFailure(Call<SuccessResGetBanner> call, Throwable t) {
+//                        ++API_COUNT;
+//                        if (API_COUNT == ALL_API_COUNT) {
+                        binding.loaderLayout.loader.setVisibility(View.GONE);
+//                        }
+                        Log.i("sfvvs", "onFailure: " + t.getMessage());
+                    }
+                });
+    }
+
     private void providerList() {
 
         binding.llMain.setVisibility(View.GONE);
@@ -227,29 +427,32 @@ public class HomeFragment extends Fragment {
 
         RetrofitClient.getClient(NetworkConstraint.BASE_URL)
                 .create(ServiceProvider.class)
-                .getServiceProviderList()
+                .getServiceProviderList(model.getResult().getId(),strLat,strLng)
                 .enqueue(new Callback<ServiceProviderListResponse>() {
                     @Override
                     public void onResponse(Call<ServiceProviderListResponse> call, Response<ServiceProviderListResponse> response) {
 //                        ++API_COUNT;
 //                        if (API_COUNT == ALL_API_COUNT) {
-                            binding.llMain.setVisibility(View.VISIBLE);
-                            binding.loaderLayout.loader.setVisibility(View.GONE);
-
-//                        }
+                        binding.llMain.setVisibility(View.VISIBLE);
+                        binding.loaderLayout.loader.setVisibility(View.GONE);
 
                         serviceproviderlist=new ArrayList<>();
                         serviceproviderlist.addAll(response.body().getResult());
                         Log.i("sdvdc", "onResponse: "+response.toString());
                         Log.i("sdvdc", "onResponse: "+response.body());
-                        mAdapter = new HomeSaloonRecyclerViewAdapter(getActivity(),serviceproviderlist, new HomeSaloonRecyclerViewAdapter.ItemPos() {
+                        mAdapter = new HomeSaloonRecyclerViewAdapter("home",getActivity(),serviceproviderlist, new HomeSaloonRecyclerViewAdapter.ItemPos() {
                             @Override
                             public void selectedpos(int pos) {
                                 allServicelist(serviceproviderlist.get(pos).getId());
                                 Provider_Name = serviceproviderlist.get(pos).getBusiness_name();//UserName();
-                                Provider_id=serviceproviderlist.get(pos).getId();
+                                Provider_id=serviceproviderlist.get(pos).getSid();
                                 provider_img=serviceproviderlist.get(pos).getBusiness_profile_image();
                                 binding.loaderLayout.loader.setVisibility(View.VISIBLE);
+                            }
+
+                            @Override
+                            public void addFavourite(int pos) {
+                                favouriteServicelist(serviceproviderlist.get(pos).getId());
                             }
                         });
                         LinearLayoutManager linearLayoutManager = new LinearLayoutManager(getActivity());
@@ -268,6 +471,36 @@ public class HomeFragment extends Fragment {
                     }
                 });
     }
+
+    private void favouriteServicelist(String id) {
+
+        RetrofitClient.getClient(NetworkConstraint.BASE_URL)
+                .create(Serviecs.class)
+                .like_unlike_provider(model.getResult().getId(),id)
+                .enqueue(new Callback<JsonElement>() {
+                    @Override
+                    public void onResponse(Call<JsonElement> call, Response<JsonElement> response) {
+
+                        Log.d("TAG", "onResponse: "+response);
+
+                        if (response.isSuccessful()) {
+
+                            binding.loaderLayout.loader.setVisibility(View.GONE);
+
+                        }
+
+                    }
+
+                    @Override
+                    public void onFailure(Call<JsonElement> call, Throwable t) {
+                        binding.llMain.setVisibility(View.VISIBLE);
+
+                        binding.loaderLayout.loader.setVisibility(View.GONE);
+                        Log.i("sfdgvcv", "onFailure: " + t.getMessage());
+                    }
+                });
+    }
+
 
     private void allServicelist(String id) {
         RetrofitClient.getClient(NetworkConstraint.BASE_URL)
@@ -305,6 +538,11 @@ public class HomeFragment extends Fragment {
                     }
                 });
     }
+
+
+
+
+
 
     private void favouriteList() {
 

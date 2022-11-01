@@ -27,6 +27,7 @@ import retrofit2.Callback;
 import retrofit2.Response;
 
 public class AllCategoryActivity extends AppCompatActivity {
+
     private ActivityAllCategoryBinding binding;
     private HomeCategoryRecyclerViewAdapter mAdapterCategory;
     private final List<ResultItem> list = new ArrayList<>();
@@ -59,7 +60,12 @@ public class AllCategoryActivity extends AppCompatActivity {
 
                         if (response != null) {
                             list.addAll(response.body().getResult());
-                            mAdapterCategory = new HomeCategoryRecyclerViewAdapter(AllCategoryActivity.this, list);
+                            mAdapterCategory = new HomeCategoryRecyclerViewAdapter(AllCategoryActivity.this, list, new HomeCategoryRecyclerViewAdapter.OnItemClickListener() {
+                                @Override
+                                public void onItemClick(View view, int position, ResultItem model) {
+
+                                }
+                            });
                             binding.recyclerCategory.setHasFixedSize(true);
                             LinearLayoutManager linearLayoutManager = new LinearLayoutManager(AllCategoryActivity.this);
                             binding.recyclerCategory.setLayoutManager(new GridLayoutManager(AllCategoryActivity.this,3));

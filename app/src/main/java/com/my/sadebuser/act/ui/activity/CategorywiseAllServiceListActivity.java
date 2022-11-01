@@ -44,7 +44,6 @@ public class CategorywiseAllServiceListActivity extends AppCompatActivity {
     private boolean amir=true;
     List<ServiceUserItem> list =new ArrayList<>();
     private ResponseAuthentication model;
-
     String  category_id;
 
     @Override
@@ -52,17 +51,14 @@ public class CategorywiseAllServiceListActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         binding=ActivityCategorywiseAllServiceListBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
-
         binding.title.setText(getIntent().getStringExtra("category_name"));
         model = SharedPrefsManager.getInstance().getObject(SharePrefrenceConstraint.user, ResponseAuthentication.class);
-
         init();
     }
 
     private void init(){
        category_id=getIntent().getStringExtra("category_id");
         getServiecs(category_id);
-
 
         binding.ivBack.setOnClickListener(v -> {
             finish();
@@ -109,6 +105,11 @@ public class CategorywiseAllServiceListActivity extends AppCompatActivity {
 //                                                intent.putExtra("item",new Gson().toJson(serviceproviderlist.get(pos)));
 //                                                startActivity(intent);
 //                                            }
+
+                                        }
+
+                                        @Override
+                                        public void addFavourite(int pos) {
 
                                         }
                                     });
@@ -220,7 +221,6 @@ public class CategorywiseAllServiceListActivity extends AppCompatActivity {
 //                                intent.putExtra("Provider_id", Provider_id);
 //                                intent.putExtra("provider_img", provider_img);
 //                                getContext().startActivity(intent);
-//
 //                            } else {
 //                                binding.loaderLayout.loader.setVisibility(View.GONE);
 //                                Toast.makeText(getContext(), getString(R.string.there_is_no_service), Toast.LENGTH_SHORT).show();

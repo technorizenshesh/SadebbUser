@@ -47,7 +47,7 @@ public class NearestProviderListFragment extends Fragment {
         binding = FragmentNearestProviderListBinding.inflate(getLayoutInflater());
         binding.rvNearmeProvider.setLayoutManager(new LinearLayoutManager(getContext()));
 
-        adapter = new NearestProviderAdapter(list, position -> {
+        adapter = new NearestProviderAdapter(getActivity(),list, position -> {
             allServicelist(list.get(position).getId());
             Provider_Name = list.get(position).getBusiness_name();//UserName();
          });

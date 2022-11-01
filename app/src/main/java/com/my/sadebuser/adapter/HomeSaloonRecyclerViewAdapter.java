@@ -23,7 +23,6 @@ import java.util.List;
 
 public class HomeSaloonRecyclerViewAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder>{
 
-
     private   List<com.my.sadebuser.act.model.sevicelistbycat.ResultItem> serviceproviderlist;
     private   ItemPos itemPos;
     private Context mContext;
@@ -32,19 +31,19 @@ public class HomeSaloonRecyclerViewAdapter extends RecyclerView.Adapter<Recycler
     private Fragment fragment;
     boolean isLike=true;
 
+    private String from="";
+
     public HomeSaloonRecyclerViewAdapter(  List<ResultItem> list ,ItemPos itemPos) {
          this.list = list;
         this.itemPos=itemPos;
     }
 
-    public HomeSaloonRecyclerViewAdapter(Context context, List<ResultItem> list, ItemPos itemPos) {
+    public HomeSaloonRecyclerViewAdapter(String from,Context context, List<ResultItem> list, ItemPos itemPos) {
         this.mContext = context;
         this.list = list;
-         this.itemPos=itemPos;
-
+        this.from = from;
+        this.itemPos=itemPos;
     }
-
-
 
     @Override
     public ViewHolder onCreateViewHolder(ViewGroup viewGroup, int viewType) {
@@ -65,16 +64,13 @@ public class HomeSaloonRecyclerViewAdapter extends RecyclerView.Adapter<Recycler
 
             if(list.get(position).getOffer_home_delivery().equals("true")){
                 ((ViewHolder) holder).tv_home_service.setVisibility(View.VISIBLE);
-
             }else {
                 ((ViewHolder) holder).tv_home_service.setVisibility(View.GONE);
-
             }
             if(list.get(position).getAddress().equals("")){
                 ((ViewHolder) holder).tv_address.setVisibility(View.GONE);
             }else {
                 ((ViewHolder) holder).tv_address.setVisibility(View.VISIBLE);
-
             }
 
             try {
@@ -89,7 +85,38 @@ public class HomeSaloonRecyclerViewAdapter extends RecyclerView.Adapter<Recycler
                 ((ViewHolder) holder).rb_Rating.setRating(0);
             }
 
-            ((ViewHolder) holder).favorite.setVisibility(View.GONE);
+            if (list.get(position).getFavProvider().equals("Yes")) {
+                ((ViewHolder) holder).favorite.setImageResource(R.drawable.ic_baseline_favorite_24);
+            } else {
+                ((ViewHolder) holder).favorite.setImageResource(R.drawable.ic_baseline_favorite_border_24);
+            }
+
+            if(from.equalsIgnoreCase("home") || from.equalsIgnoreCase("fav"))
+            {
+                ((ViewHolder) holder).favorite.setVisibility(View.VISIBLE);
+            }
+            else
+            {
+                ((ViewHolder) holder).favorite.setVisibility(View.GONE);
+            }
+
+//            ((ViewHolder) holder).favorite.setVisibility(View.GONE);
+
+            ((ViewHolder) holder).favorite.setOnClickListener(v ->
+                    {
+
+                        if(list.get(position).getFavProvider().equalsIgnoreCase("No"))
+                        {
+                            list.get(position).setFavProvider("Yes");
+                        } else
+                        {
+                            list.get(position).setFavProvider("No");
+                        }
+                        itemPos.addFavourite(position);
+                        notifyDataSetChanged();
+
+                    }
+                    );
 
 //            if (list.get(position).getDescription().equals("")){
 //                ((ViewHolder) holder).tv_Detail.setText("Lorem ipsum is simply dummy text of the printing and typesetting industry. Lorem ipsum has been the industry's standard");
@@ -132,26 +159,26 @@ public class HomeSaloonRecyclerViewAdapter extends RecyclerView.Adapter<Recycler
 
         private RatingBar rb_Rating;
 
-
         public ViewHolder(final View itemView) {
             super(itemView);
 
             this.tv_address=itemView.findViewById(R.id.tv_address);
             this.tv_home_service=itemView.findViewById(R.id.tv_home_service);
 
-            this.tv_Number=itemView.findViewById(R.id.tv_Number);
+          this.tv_Number=itemView.findViewById(R.id.tv_Number);
           this.txtBook=itemView.findViewById(R.id.txtBook);
           this.tv_Detail=itemView.findViewById(R.id.tv_Detail);
           this.tv_Name=itemView.findViewById(R.id.tv_Name);
           this.img1=itemView.findViewById(R.id.img1);
-            this.rb_Rating=itemView.findViewById(R.id.rb_Rating);
+          this.rb_Rating=itemView.findViewById(R.id.rb_Rating);
 
-            this.favorite=itemView.findViewById(R.id.favorite);
+          this.favorite=itemView.findViewById(R.id.favorite);
          }
     }
 
     public interface ItemPos{
         void selectedpos(int pos);
+        void addFavourite(int pos);
     }
 
 }

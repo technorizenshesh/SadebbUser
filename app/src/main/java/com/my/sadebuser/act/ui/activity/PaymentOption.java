@@ -9,7 +9,6 @@ import androidx.databinding.DataBindingUtil;
 import com.my.sadebuser.R;
 import com.my.sadebuser.databinding.ActivityPaymentOptionBinding;
 
-
 public class PaymentOption extends AppCompatActivity {
 
     ActivityPaymentOptionBinding binding;
@@ -24,12 +23,9 @@ public class PaymentOption extends AppCompatActivity {
         });
         binding.RRCreditCard.setOnClickListener(v -> {
             startActivity(new Intent(this,ChooseCardActivity.class));
-
         });
 
 //        binding.RRBankTransFr.setOnClickListener(v -> {
-//
-//
 //        });
 
     }

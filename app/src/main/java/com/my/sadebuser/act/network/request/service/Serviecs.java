@@ -24,4 +24,9 @@ public interface Serviecs {
     Call<JsonElement> like_unlike_service(@Query("user_id") String user_id,
                                           @Query("service_id") String service_id);
 
+    @GET("add_fav_provider")
+    Call<JsonElement> like_unlike_provider(@Query("user_id") String user_id,
+                                          @Query("provider_id") String service_id);
+
+
 }

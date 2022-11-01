@@ -21,7 +21,7 @@ public interface BookingRequest {
                               @Field("lat") String lat,
                               @Field("lon") String longitude,
                               @Field("provider_user_id") String employee_id,
-                               @Field("lang") String lang
+                              @Field("lang") String lang
 
     );
 
@@ -32,7 +32,5 @@ public interface BookingRequest {
     @POST("get_service_user")
     @FormUrlEncoded
     Call<JsonElement> getmyServicesdetail(@Field("service_id") String service_id);
-
-
 
 }

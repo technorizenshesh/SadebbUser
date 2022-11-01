@@ -41,25 +41,22 @@
         <androidx.core.widget.NestedScrollView
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:layout_below="@+id/RR_new"
-            >
+            android:layout_below="@+id/RR_new">
 
             <LinearLayout
-                android:layout_marginTop="@dimen/_10sdp"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
+                android:layout_marginTop="@dimen/_10sdp"
                 android:orientation="vertical">
 
 
-
-
                 <TextView
-                    android:paddingLeft="@dimen/_3sdp"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="@dimen/_13sdp"
                     android:layout_marginTop="@dimen/_10sdp"
-                    android:text="@string/full_name"
+                    android:paddingLeft="@dimen/_3sdp"
+                    android:text="@string/first_name"
                     android:textColor="@color/black"
                     android:textSize="@dimen/_15sdp" />
 
@@ -86,31 +83,66 @@
 
                 </RelativeLayout>
 
+
                 <TextView
-                    android:paddingLeft="@dimen/_3sdp"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="@dimen/_13sdp"
                     android:layout_marginTop="@dimen/_10sdp"
+                    android:paddingLeft="@dimen/_3sdp"
+                    android:text="@string/last_name"
+                    android:textColor="@color/black"
+                    android:textSize="@dimen/_15sdp" />
+
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="@dimen/_10sdp"
+                    android:layout_marginTop="@dimen/_5sdp"
+                    android:layout_marginRight="@dimen/_10sdp"
+                    android:background="@drawable/edt_bg">
+
+                    <EditText
+                        android:id="@+id/etSurName"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:background="@null"
+                        android:inputType="text"
+                        android:maxLength="30"
+                        android:padding="@dimen/_10sdp"
+                        android:singleLine="true"
+                        android:textColor="@color/black"
+                        android:textColorHint="@color/black"
+                        android:textSize="@dimen/_13sdp" />
+
+                </RelativeLayout>
+
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="@dimen/_13sdp"
+                    android:layout_marginTop="@dimen/_10sdp"
+                    android:paddingLeft="@dimen/_3sdp"
                     android:text="@string/mobile_number"
                     android:textColor="@color/black"
                     android:textSize="@dimen/_15sdp" />
 
                 <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="45dp"
                     android:layout_marginLeft="@dimen/_10sdp"
                     android:layout_marginTop="@dimen/_5sdp"
                     android:layout_marginRight="@dimen/_10sdp"
                     android:background="@drawable/edt_bg"
-                    android:layout_width="match_parent"
-                    android:layout_height="45dp"
                     android:orientation="horizontal">
 
                     <com.rilixtech.widget.countrycodepicker.CountryCodePicker
                         android:id="@+id/ccp"
-                        android:layout_marginHorizontal="@dimen/_10sdp"
-                        android:layout_gravity="center"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:layout_marginHorizontal="@dimen/_10sdp"
                         app:ccp_defaultNameCode="57"
                         tools:ignore="MissingClass" />
 
@@ -132,11 +164,11 @@
 
 
                 <TextView
-                    android:paddingLeft="@dimen/_3sdp"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="@dimen/_13sdp"
                     android:layout_marginTop="@dimen/_10sdp"
+                    android:paddingLeft="@dimen/_3sdp"
                     android:text="@string/email_address"
                     android:textColor="@color/black"
                     android:textSize="@dimen/_15sdp" />
@@ -164,11 +196,11 @@
                 </RelativeLayout>
 
                 <TextView
-                    android:paddingLeft="@dimen/_3sdp"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="@dimen/_13sdp"
                     android:layout_marginTop="@dimen/_10sdp"
+                    android:paddingLeft="@dimen/_3sdp"
                     android:text="@string/password"
                     android:textColor="@color/black"
                     android:textSize="@dimen/_15sdp" />
@@ -182,12 +214,12 @@
                     android:background="@drawable/edt_bg">
 
                     <EditText
+                        android:id="@+id/et_Password"
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
                         android:background="@null"
                         android:inputType="textPassword"
                         android:maxLength="30"
-                        android:id="@+id/et_Password"
                         android:padding="@dimen/_10sdp"
                         android:singleLine="true"
                         android:textColor="@color/black"
@@ -196,13 +228,12 @@
 
                 </RelativeLayout>
 
-
                 <TextView
-                    android:paddingLeft="@dimen/_3sdp"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="@dimen/_13sdp"
                     android:layout_marginTop="@dimen/_10sdp"
+                    android:paddingLeft="@dimen/_3sdp"
                     android:text="@string/confirm_password"
                     android:textColor="@color/black"
                     android:textSize="@dimen/_15sdp" />
@@ -216,10 +247,10 @@
                     android:background="@drawable/edt_bg">
 
                     <EditText
+                        android:id="@+id/et_Confirm_Password"
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
                         android:background="@null"
-                        android:id="@+id/et_Confirm_Password"
                         android:inputType="textPassword"
                         android:maxLength="30"
                         android:padding="@dimen/_10sdp"
@@ -232,14 +263,13 @@
 
                 <CheckBox
                     android:id="@+id/cb_Btn"
-                    android:textSize="16sp"
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
                     android:layout_margin="@dimen/_13sdp"
                     android:text="@string/i_agree_to_the_terms_and_condition"
-                    android:layout_width="wrap_content"
-                    android:layout_height="match_parent">
+                    android:textSize="16sp">
 
                 </CheckBox>
-
 
                 <androidx.appcompat.widget.AppCompatButton
                     android:id="@+id/bt_submit"
@@ -258,10 +288,10 @@
                     android:textSize="@dimen/_15sdp" />
 
                 <LinearLayout
-                    android:layout_marginBottom="@dimen/_20sdp"
-                    android:layout_alignParentBottom="true"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:layout_alignParentBottom="true"
+                    android:layout_marginBottom="@dimen/_20sdp"
                     android:gravity="center_horizontal"
                     android:orientation="horizontal">
 

@@ -33,6 +33,7 @@ import retrofit2.Response;
 import static com.my.sadebuser.R.string.text_register_not_matched;
 
 public class Register extends AppCompatActivity {
+
     private ActivityRegisterBinding binding;
     private String called_from;
 
@@ -54,6 +55,7 @@ public class Register extends AppCompatActivity {
 
                 Log.d("TAG-token", token);
             });
+
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -65,6 +67,7 @@ public class Register extends AppCompatActivity {
         binding.tvSignIn.setOnClickListener(v -> {
             startActivity(new Intent(Register.this, Login.class));
         });
+
         SetupUI();
 
         if (called_from != null && called_from.equalsIgnoreCase("add"))
@@ -74,7 +77,8 @@ public class Register extends AppCompatActivity {
         Log.i("zfcsfsfvszf", "onCreate: "+binding.ccp.getSelectedCountryCodeWithPlus());
         Log.i("zfcsfsfvszf", "onCreate: "+binding.ccp.getSelectedCountryCode());
         Log.i("zfcsfsfvszf", "onCreate: "+binding.ccp.getSelectedCountryNameCode());
-     }
+
+    }
 
     private void SetupUI() {
         binding.btSubmit.setOnClickListener(new View.OnClickListener() {
@@ -86,7 +90,7 @@ public class Register extends AppCompatActivity {
 
                     RetrofitClient.getClient(NetworkConstraint.BASE_URL)
                             .create(RequestLAuthentication.class)
-                            .getSignUp(binding.etFullName.getText().toString(),"", binding.etPassword.getText().toString(), binding.etEmail.getText().toString()
+                            .getSignUp(binding.etFullName.getText().toString(),binding.etSurName.getText().toString(), binding.etPassword.getText().toString(), binding.etEmail.getText().toString()
                                     , NetworkConstraint.type, binding.etNo.getText().toString(), "",SharedPrefsManager.getInstance().getString(SharePrefrenceConstraint.register_id),
 
                             "","","","","","",""
@@ -104,9 +108,7 @@ public class Register extends AppCompatActivity {
                                                 SharedPrefsManager.getInstance().setString("ccp",binding.ccp.getSelectedCountryCode());
                                                 ResponseAuthentication authentication = new Gson().fromJson(object, ResponseAuthentication.class);
                                                 Log.i("dscbhs", "onResponse: " + authentication);
-
                                                 Toast.makeText(Register.this, getString(R.string.message_active_account), Toast.LENGTH_SHORT).show();
-
                                                 startActivity(new Intent(Register.this, WaitingActivity.class));//Login.class));//MainActivity.class));
                                                 finish();
                                             } else {
@@ -129,11 +131,15 @@ public class Register extends AppCompatActivity {
             }
         });
     }
+
     private boolean validate() {
         Log.i("fzsfsgsg", "validate: "+binding.ccp.getSelectedCountryCode());
 
         if (TextUtils.isEmpty(binding.etFullName.getText().toString().replace(" ", ""))) {
-            Snackbar.make(findViewById(android.R.id.content), R.string.enter_Name, Snackbar.LENGTH_SHORT).show();
+            Snackbar.make(findViewById(android.R.id.content), R.string.enter_first_name, Snackbar.LENGTH_SHORT).show();
+            return false;
+        }else  if (TextUtils.isEmpty(binding.etSurName.getText().toString().replace(" ", ""))) {
+            Snackbar.make(findViewById(android.R.id.content), R.string.enter_last_name, Snackbar.LENGTH_SHORT).show();
             return false;
         }else if (TextUtils.isEmpty(binding.etNo.getText().toString().replace(" ", ""))) {
             Snackbar.make(findViewById(android.R.id.content), R.string.text_register_no, Snackbar.LENGTH_SHORT).show();
@@ -194,13 +200,11 @@ public class Register extends AppCompatActivity {
                     R.string.text_register_password,
                     Snackbar.LENGTH_SHORT).show();
             return false;
-
         } else if (!binding.etConfirmPassword.getText().toString().equals(binding.etPassword.getText().toString())) {
             Snackbar.make(findViewById(android.R.id.content),
                     text_register_not_matched,
                     Snackbar.LENGTH_SHORT).show();
             return false;
-
         } else if (binding.etConfirmPassword.getText().toString().replace(" ", "").length() < 6) {
             Snackbar.make(findViewById(android.R.id.content),
                     R.string.text_register_password,

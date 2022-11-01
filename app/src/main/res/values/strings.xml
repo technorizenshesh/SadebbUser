@@ -3,13 +3,14 @@
     <string name="see_all"><U>See All</U></string>
     <!--    Register-->
     <string name="enter_Name">Enter Name</string>
+    <string name="enter_first_name">Enter First Name</string>
+    <string name="enter_last_name">Enter Last Name</string>
     <string name="text_register_no">Enter No</string>
     <string name="text_register_right_no">Please enter a valid mobile number</string>
     <string name="text_register_correct_email">Enter Correct Email</string>
     <string name="text_register_password">Enter Long Password</string>
     <string name="text_register_not_matched">Password Not Matched</string>
     <string name="exist">You Don\'t Exist</string>
-
     <string name="text_register_term">Accept Term And Condition</string>
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello Blank Fragment</string>
@@ -23,7 +24,6 @@
     <string name="second_fragment_label">Second Fragment</string>
     <string name="next">Next</string>
     <string name="previous">Previous</string>
-
     <string name="hello_first_fragment">Hello first fragment</string>
     <string name="hello_second_fragment">Hello second fragment. Arg: %1$s</string>
     <string name="confirm">Confirm</string>
@@ -158,4 +158,7 @@
     <string name="favourite">Favourite</string>
     <string name="completed">Completed</string>
     <string name="pending">Pending</string>
+    <string name="first_name">First Name</string>
+    <string name="last_name">Last Name</string>
+    <string name="permisson_denied">Permission Denied.</string>
 </resources>
