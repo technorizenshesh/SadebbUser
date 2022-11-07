@@ -304,31 +304,28 @@
         </androidx.core.widget.NestedScrollView>
 
 
-
         <RelativeLayout
             android:id="@+id/RR_book"
-            android:layout_marginBottom="@dimen/_10sdp"
-            android:layout_alignParentBottom="true"
-            android:background="@drawable/bg_blue_border"
-            android:layout_marginTop="@dimen/_10sdp"
-            android:layout_marginRight="@dimen/_10sdp"
-            android:layout_marginLeft="@dimen/_10sdp"
             android:layout_width="match_parent"
             android:layout_height="@dimen/_45sdp"
-            >
-
+            android:layout_alignParentBottom="true"
+            android:layout_marginLeft="@dimen/_10sdp"
+            android:layout_marginTop="@dimen/_10sdp"
+            android:layout_marginRight="@dimen/_10sdp"
+            android:layout_marginBottom="@dimen/_10sdp"
+            android:background="@drawable/bg_blue_border">
 
 
             <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
                 android:layout_centerHorizontal="true"
                 android:layout_centerVertical="true"
-                android:textSize="@dimen/_14sdp"
-                android:text="@string/book"
-                android:textStyle="bold"
-                android:textColor="@color/white"
                 android:layout_weight="1"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content">
+                android:text="@string/book"
+                android:textColor="@color/white"
+                android:textSize="@dimen/_14sdp"
+                android:textStyle="bold">
 
             </TextView>
 

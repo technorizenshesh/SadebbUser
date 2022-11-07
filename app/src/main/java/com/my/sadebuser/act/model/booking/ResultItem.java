@@ -6,24 +6,20 @@ public class ResultItem{
 
 	@SerializedName("date")
 	private String date;
-
 	@SerializedName("service_name")
 	private String serviceName;
-
 	@SerializedName("mobile")
 	private String mobile;
-
 	@SerializedName("end_time")
 	private String endTime;
-
 	@SerializedName("lon")
 	private String lon;
-
 	@SerializedName("users_details")
 	private UsersDetails usersDetails;
 	@SerializedName("service_details")
 	private ServiceDetails serviceDetails;
 	@Override
+
 	public String toString() {
 		return "ResultItem{" +
 				"date='" + date + '\'' +

@@ -1,7 +1,7 @@
 package com.my.sadebuser.act.network.request.category;
 
-
 import com.my.sadebuser.act.model.category.CategoryResponse;
+import com.my.sadebuser.model.SuccessResGetCategory;
 
 import retrofit2.Call;
 import retrofit2.http.GET;
@@ -16,7 +16,10 @@ public interface CategoryRequest {
 //    @GET("get_category")
 //    Call<CategoryResponse> getCategory(@Query("lang") String provider_name);
 
-    @GET("get_all_service")
+//    @GET("get_all_service")
+//    Call<CategoryResponse> getCategory(@Query("lang") String provider_name);
+
+    @GET("get_business_type")
     Call<CategoryResponse> getCategory(@Query("lang") String provider_name);
 
 }

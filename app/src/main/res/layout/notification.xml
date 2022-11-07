@@ -38,10 +38,9 @@
                     android:orientation="vertical">
 
                     <TextView
-                        android:maxLines="2"
                          android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="Lorem Ipsum is simply dummy "
+                        android:text="Hello  , you have corte de cabello  a service in the  beauty parlor."
                         android:fontFamily="@font/poppins_regular"
                         android:id="@+id/tv_Description"
                         android:textColor="@color/black"
@@ -54,6 +53,7 @@
                         android:layout_height="wrap_content"
                         android:textColor="@color/blue"
                         android:text="@string/read_more"
+                        android:visibility="gone"
                         android:textSize="@dimen/_10sdp"
                         android:id="@+id/tv_ReadMore"/>
 
@@ -67,7 +67,7 @@
                      android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:textColor="@color/blue"
-                    android:text="12:23"
+                    android:text="12:23:343434"
                     android:textSize="@dimen/_10sdp"
                     android:id="@+id/tv_Time"/>
 

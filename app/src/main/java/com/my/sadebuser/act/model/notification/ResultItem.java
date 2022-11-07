@@ -2,7 +2,7 @@ package com.my.sadebuser.act.model.notification;
 
 import com.google.gson.annotations.SerializedName;
 
-public class ResultItem{
+public class ResultItem {
 
 	@SerializedName("date_time")
 	private String dateTime;

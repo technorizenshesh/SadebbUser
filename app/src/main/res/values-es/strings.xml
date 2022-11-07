@@ -133,6 +133,7 @@
     <string name="please_enter_4_digit_otp">Ingrese otp de 4 dígitos</string>
     <string name="please_enter_otp">Por favor ingrese otp</string>
     <string name="please_select_a_provider">Seleccione un proveedor</string>
+    <string name="please_select_a_service_user">Seleccione usuario del servicio</string>
     <string name="select_date">Seleccione fecha</string>
     <string name="please_select_time_availability">Por favor seleccione Disponibilidad de tiempo</string>
     <string name="there_is_no_service">No hay servicio</string>

@@ -67,7 +67,7 @@ public class ShopTimeAvailavility extends AppCompatActivity {
     private ResultItem item;
     private int API_COUNT;
     private String provider_Name, provider_img;
-//    private String providerUserId;
+//  private String providerUserId;
 
 
     private ProviderAllUserAdapter adapter;
@@ -89,7 +89,6 @@ public class ShopTimeAvailavility extends AppCompatActivity {
         if (getSupportActionBar() != null) {
             getSupportActionBar().hide();
         }
-
 
         binding.rvTimeslot.setLayoutManager(new GridLayoutManager(ShopTimeAvailavility.this, 3, RecyclerView.HORIZONTAL, false));
         timeSlotAdapter = new TimeSlotAdapter(/*timeItems,*/ new TimeSlotAdapter.ClickCallback() {
@@ -113,6 +112,7 @@ public class ShopTimeAvailavility extends AppCompatActivity {
         binding.imgBack.setOnClickListener(v -> {
             onBackPressed();
         });
+
         binding.RRBook.setOnClickListener(v -> {
 
 //            Log.i("fsfsffsfs", "init: "+item.toString());
@@ -148,7 +148,7 @@ public class ShopTimeAvailavility extends AppCompatActivity {
 
             } else {
                 Snackbar.make(findViewById(android.R.id.content),
-                        getString(R.string.please_select_a_provider),
+                        getString(R.string.please_select_a_service_user),
                         Snackbar.LENGTH_SHORT).show();
             }
         });
@@ -172,7 +172,6 @@ public class ShopTimeAvailavility extends AppCompatActivity {
         provider_img = getIntent().getStringExtra("provider_img");
         item = new Gson().fromJson(getIntent().getStringExtra("item"), ResultItem.class);
         binding.tvProviderName.setText(provider_Name);
-
 
         binding.tvServiceName.setText(item.getServiceName());
         binding.tvServicePrice.setText("$" + item.getServicePrice() + ".00");
@@ -388,11 +387,11 @@ public class ShopTimeAvailavility extends AppCompatActivity {
         itemProvider = new Gson().fromJson(getIntent().getStringExtra("item"), com.my.sadebuser.act.model.servicelist.ResultItem.class);
         getAllProviderUser();
 
+
 //        binding.ivBack.setOnClickListener(v -> {
 //            finish();
 //        });
         binding.rvAllUsers.setLayoutManager(new LinearLayoutManager(this, RecyclerView.HORIZONTAL, false));
-
 
         adapter = new ProviderAllUserAdapter(list, new ProviderAllUserAdapter.SelectedItem() {
             @Override
